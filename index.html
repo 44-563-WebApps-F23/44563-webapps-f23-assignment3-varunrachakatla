@@ -47,5 +47,28 @@
                 <td>2</td>
             </tr>
         </table>
+        <hr>
+        <h2>Quotes</h2>
+        <blockquote cite="https://stackoverflow.com/questions/60174/how-can-i-prevent-sql-injection-in-php">How can I prevent SQL injection in PHP?</blockquote>
+        <pre>           
+            &lt?php
+
+            $hostname = 'localhost';
+            $user = 'username';
+            $pass = 'password';
+            $database = 'database_name';
+            
+            $db_connection = new PDO( "mysql:host=" . $hostname . ";dbname=" . $database, $user, $pass );
+            
+            $results = $db_connection->query( 'SELECT testimonial, author FROM recommendations WHERE 1 ORDER by rand() LIMIT 1' );
+            
+            foreach ( $results as $row ) {
+                echo '&ltp id="quote"&gt' . $row['testimonial'] . '&lt/p&gt';
+                echo '&ltp id="author"&gt&ndash;' . $row['author'] . '&lt/p&gt';
+            }
+            
+            // Close the connection
+            $db_connection = null;
+        /&gt</pre>
     </body>
 </html>
